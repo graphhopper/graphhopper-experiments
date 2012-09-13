@@ -41,11 +41,7 @@ public class StartWithExternalStorage {
         // (but could be even good to warm caches ;))
         final Storage s = new Neo4JStorage(args.get("storage", "neo4j.db"), initSize);
 //        final Storage s = new TinkerStorage(readCmdArgs.get("storage", "tinker.db"), initSize);
-        OSMReader reader = new OSMReader(null, initSize) {
-            @Override protected Storage createStorage(String storageLocation, int size) {
-                return s;
-            }
-        };
+        OSMReader reader = new OSMReader(s, initSize);
         Graph g = OSMReader.osm2Graph(reader, args);
         logger.info("finished with locations:" + g.getNodes() + " now warm up ...");
         // warm up caches:
