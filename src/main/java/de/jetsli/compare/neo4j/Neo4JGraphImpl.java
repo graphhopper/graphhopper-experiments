@@ -19,6 +19,7 @@ import de.jetsli.graph.routing.util.CarStreetType;
 import de.jetsli.graph.storage.Graph;
 import de.jetsli.graph.util.EdgeIterator;
 import de.jetsli.graph.util.Helper;
+import de.jetsli.graph.util.shapes.BBox;
 import java.io.File;
 import java.util.Iterator;
 import java.util.Random;
@@ -42,6 +43,8 @@ public class Neo4JGraphImpl implements Graph {
     private boolean temporary;
     private File storeDir;
     private int bulkSize = 10000;
+    private BBox bounds = BBox.INVERSE.clone();
+
     // TODO uh this is complicated (they should code it like lumeo!) ... so, we need to use bulk mode for lucene as well:
     // https://github.com/neo4j/community/blob/master/lucene-index/src/test/java/examples/ImdbExampleTest.java#L601
     //
@@ -158,10 +161,22 @@ public class Neo4JGraphImpl implements Graph {
             Node n = createNode();
             n.setProperty(LAT, lat);
             n.setProperty(LON, lon);
+            if (lat > bounds.maxLat)
+                bounds.maxLat = lat;
+            if (lat < bounds.minLat)
+                bounds.minLat = lat;
+            if (lon > bounds.maxLon)
+                bounds.maxLon = lon;
+            if (lon < bounds.minLon)
+                bounds.minLon = lon;
         } finally {
             ta.ensureEnd();
         }
     }
+
+    public BBox getBounds() {
+        return bounds;
+    }        
 
     public double getLatitude(int ghId) {
         ta.ensureStart();

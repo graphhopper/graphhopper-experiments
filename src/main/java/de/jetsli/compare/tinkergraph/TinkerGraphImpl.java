@@ -22,6 +22,7 @@ import com.tinkerpop.blueprints.impls.tg.TinkerGraph;
 import de.jetsli.graph.routing.util.CarStreetType;
 import de.jetsli.graph.storage.Graph;
 import de.jetsli.graph.util.EdgeIterator;
+import de.jetsli.graph.util.shapes.BBox;
 import java.util.Iterator;
 
 /**
@@ -34,8 +35,9 @@ public class TinkerGraphImpl implements Graph {
     private static final String WAY = "way";
     private static final String DISTANCE = "distance";
     private static final String NODES = "nodeCount";
-    com.tinkerpop.blueprints.Graph g;
-    Vertex refNode;
+    private com.tinkerpop.blueprints.Graph g;
+    private Vertex refNode;
+    private BBox bounds = BBox.INVERSE.clone();
 
     public TinkerGraphImpl(String file) {
         if (file == null)
@@ -71,6 +73,18 @@ public class TinkerGraphImpl implements Graph {
         Vertex v = createNode(index);
         v.setProperty(LAT, lat);
         v.setProperty(LON, lon);
+        if (lat > bounds.maxLat)
+            bounds.maxLat = lat;
+        if (lat < bounds.minLat)
+            bounds.minLat = lat;
+        if (lon > bounds.maxLon)
+            bounds.maxLon = lon;
+        if (lon < bounds.minLon)
+            bounds.minLon = lon;
+    }
+
+    public BBox getBounds() {
+        return bounds;
     }
 
     public double getLatitude(int index) {
