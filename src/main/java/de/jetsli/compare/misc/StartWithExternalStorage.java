@@ -18,10 +18,9 @@ package de.jetsli.compare.misc;
 import de.jetsli.compare.neo4j.Neo4JStorage;
 import de.jetsli.graph.reader.OSMReader;
 import de.jetsli.graph.routing.util.RoutingAlgorithmIntegrationTests;
-import de.jetsli.graph.storage.Storage;
 import de.jetsli.graph.storage.Graph;
+import de.jetsli.graph.storage.Storage;
 import de.jetsli.graph.util.CmdArgs;
-import de.jetsli.graph.util.Helper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +30,7 @@ import org.slf4j.LoggerFactory;
 public class StartWithExternalStorage {
 
     public static void main(String[] args) throws Exception {
-        new StartWithExternalStorage().start(Helper.readCmdArgs(args));
+        new StartWithExternalStorage().start(CmdArgs.read(args));
     }
     private Logger logger = LoggerFactory.getLogger(getClass());
 

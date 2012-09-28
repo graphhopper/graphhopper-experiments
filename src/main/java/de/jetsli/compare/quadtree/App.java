@@ -4,7 +4,6 @@ import de.jetsli.graph.reader.MiniPerfTest;
 import de.jetsli.graph.reader.OSMReader;
 import de.jetsli.graph.storage.Graph;
 import de.jetsli.graph.util.CmdArgs;
-import de.jetsli.graph.util.Helper;
 
 /**
  * Performance comparison of quadtree implementations
@@ -17,7 +16,7 @@ public class App {
     public static void main(String[] args) throws Exception {        
         // OSM file - e.g:
         // http://download.geofabrik.de/osm/europe/germany/bayern/unterfranken.osm.bz2        
-        new App().start(Helper.readCmdArgs(args));
+        new App().start(CmdArgs.read(args));
     }
 
     public void start(CmdArgs args) throws Exception {

@@ -24,9 +24,9 @@ import de.jetsli.graph.geohash.SpatialHashtable;
 import de.jetsli.graph.reader.OSMReader;
 import de.jetsli.graph.storage.Graph;
 import de.jetsli.graph.trees.QuadTree;
+import de.jetsli.graph.util.CmdArgs;
 import de.jetsli.graph.util.CoordTrig;
 import de.jetsli.graph.util.CoordTrigLongEntry;
-import de.jetsli.graph.util.Helper;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,7 +40,7 @@ import javax.swing.SwingUtilities;
 public class PrintStats {
 
     public static void main(String[] args) throws Exception {
-        final Graph g = OSMReader.osm2Graph(Helper.readCmdArgs(args));
+        final Graph g = OSMReader.osm2Graph(CmdArgs.read(args));
         final int locs = g.getNodes();
         System.out.println("graph contains " + locs + " nodes");
 
