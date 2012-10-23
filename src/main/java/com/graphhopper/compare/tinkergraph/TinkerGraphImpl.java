@@ -133,6 +133,10 @@ public class TinkerGraphImpl implements Graph {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public EdgeIterator getEdgeProps(int edgeId, int endNode) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     static class MyTinkerIterable implements EdgeIterator {
 
         private Iterator<Edge> iter;
@@ -181,6 +185,10 @@ public class TinkerGraphImpl implements Graph {
 
         public int fromNode() {
             return fromNode;
+        }
+
+        public int edge() {
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     }
 

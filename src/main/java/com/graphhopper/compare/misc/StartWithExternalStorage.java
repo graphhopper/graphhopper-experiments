@@ -17,7 +17,7 @@ package com.graphhopper.compare.misc;
 
 import com.graphhopper.compare.neo4j.Neo4JStorage;
 import com.graphhopper.reader.OSMReader;
-import com.graphhopper.routing.util.RoutingAlgorithmIntegrationTests;
+import com.graphhopper.routing.util.RoutingAlgorithmSpecialAreaTests;
 import com.graphhopper.storage.Graph;
 import com.graphhopper.storage.Storage;
 import com.graphhopper.util.CmdArgs;
@@ -35,17 +35,17 @@ public class StartWithExternalStorage {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     public void start(CmdArgs args) throws Exception {
-        int initSize = args.getInt("size", 5000000);
+        int initSize = args.getInt("osmreader.size", 5000000);
         // TODO subnetworks are not deleted and so for 5 routing queries all nodes are traversed
         // (but could be even good to warm caches ;))
-        final Storage s = new Neo4JStorage(args.get("storage", "neo4j.db"), initSize);
+        final Storage s = new Neo4JStorage(args.get("neo4j.storage", "neo4j.db"), initSize);
 //        final Storage s = new TinkerStorage(readCmdArgs.get("storage", "tinker.db"), initSize);
         OSMReader reader = new OSMReader(s, initSize);
         Graph g = OSMReader.osm2Graph(reader, args);
         logger.info("finished with locations:" + g.getNodes() + " now warm up ...");
         // warm up caches:
-        RoutingAlgorithmIntegrationTests tester = new RoutingAlgorithmIntegrationTests(g);
-        String algo = args.get("algo", "dijkstra");
+        RoutingAlgorithmSpecialAreaTests tester = new RoutingAlgorithmSpecialAreaTests(g);
+        String algo = args.get("osmreader.algo", "dijkstra");
         tester.runShortestPathPerf(50, algo);
 
         logger.info(".. and go!");
