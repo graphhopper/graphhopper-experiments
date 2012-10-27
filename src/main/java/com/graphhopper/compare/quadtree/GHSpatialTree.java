@@ -15,7 +15,7 @@
  */
 package com.graphhopper.compare.quadtree;
 
-import com.graphhopper.geohash.SpatialHashtable;
+import com.graphhopper.compare.misc.SpatialHashtable;
 
 /**
  * Spatial Information System implementation

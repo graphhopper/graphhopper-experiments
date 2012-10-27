@@ -20,7 +20,6 @@ import de.genvlin.core.data.HistogrammInterface;
 import de.genvlin.core.data.MainPool;
 import de.genvlin.core.data.XYVectorInterface;
 import de.genvlin.gui.plot.GPlotPanel;
-import com.graphhopper.geohash.SpatialHashtable;
 import com.graphhopper.reader.OSMReader;
 import com.graphhopper.storage.Graph;
 import com.graphhopper.trees.QuadTree;

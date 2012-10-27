@@ -15,7 +15,6 @@
  */
 package com.graphhopper.compare.misc;
 
-import com.graphhopper.geohash.SpatialHashtable;
 import java.util.Random;
 import org.junit.*;
 import static org.junit.Assert.*;
