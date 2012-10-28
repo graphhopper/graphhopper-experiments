@@ -20,7 +20,7 @@ public class App {
     }
 
     public void start(CmdArgs args) throws Exception {
-        Graph g = OSMReader.osm2Graph(args);
+        Graph g = OSMReader.osm2Graph(args).getGraph();
         System.out.println("graph contains " + g.getNodes() + " nodes");
 
 //        for (int i = 0; i < 32; i++) {

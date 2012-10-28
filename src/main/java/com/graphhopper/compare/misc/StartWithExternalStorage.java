@@ -1,5 +1,5 @@
 /*
- *  Copyright 2012 Peter Karich info@jetsli.de
+ *  Copyright 2012 Peter Karich
  * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package com.graphhopper.compare.misc;
 
 import com.graphhopper.compare.neo4j.Neo4JStorage;
 import com.graphhopper.reader.OSMReader;
+import com.graphhopper.routing.RoutingAlgorithm;
 import com.graphhopper.routing.util.RoutingAlgorithmSpecialAreaTests;
 import com.graphhopper.storage.Graph;
 import com.graphhopper.storage.Storage;
@@ -41,11 +42,12 @@ public class StartWithExternalStorage {
         final Storage s = new Neo4JStorage(args.get("neo4j.storage", "neo4j.db"), initSize);
 //        final Storage s = new TinkerStorage(readCmdArgs.get("storage", "tinker.db"), initSize);
         OSMReader reader = new OSMReader(s, initSize);
-        Graph g = OSMReader.osm2Graph(reader, args);
+        OSMReader osm = OSMReader.osm2Graph(reader, args);
+        Graph g = osm.getGraph();
         logger.info("finished with locations:" + g.getNodes() + " now warm up ...");
         // warm up caches:
         RoutingAlgorithmSpecialAreaTests tester = new RoutingAlgorithmSpecialAreaTests(g);
-        String algo = args.get("osmreader.algo", "dijkstra");
+        RoutingAlgorithm algo = osm.getPreparation().createAlgo();
         tester.runShortestPathPerf(50, algo);
 
         logger.info(".. and go!");

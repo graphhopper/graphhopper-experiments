@@ -42,7 +42,7 @@ import java.util.Date;
 public class PerfTest {
 
     public static void main(String[] args) throws Exception {
-        Graph g = OSMReader.osm2Graph(CmdArgs.read(args));
+        Graph g = OSMReader.osm2Graph(CmdArgs.read(args)).getGraph();
         new PerfTest(g).start();
     }
     Graph g;

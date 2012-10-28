@@ -1,5 +1,5 @@
 /*
- *  Copyright 2012 Peter Karich info@jetsli.de
+ *  Copyright 2012 Peter Karich
  * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import javax.swing.SwingUtilities;
 public class PrintStats {
 
     public static void main(String[] args) throws Exception {
-        final Graph g = OSMReader.osm2Graph(CmdArgs.read(args));
+        final Graph g = OSMReader.osm2Graph(CmdArgs.read(args)).getGraph();
         final int locs = g.getNodes();
         System.out.println("graph contains " + locs + " nodes");
 

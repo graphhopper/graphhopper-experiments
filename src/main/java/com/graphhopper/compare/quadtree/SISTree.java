@@ -1,5 +1,5 @@
 /*
- *  Copyright 2012 Peter Karich info@jetsli.de
+ *  Copyright 2012 Peter Karich
  * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -51,11 +51,7 @@ public class SISTree implements SimplisticQuadTree {
     public int size() {
         return qt.size();
     }
-
-    public long getEmptyEntries(boolean b) {
-        return qt.getEmptyEntries(b);
-    }
-
+    
     private static class SisPoint implements QuadTreeData {
 
         private final LatLon latLon;
