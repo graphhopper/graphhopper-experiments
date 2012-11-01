@@ -137,13 +137,17 @@ public class TinkerGraphImpl implements Graph {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public EdgeIterator getAllEdges() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     static class MyTinkerIterable implements EdgeIterator {
 
         private Iterator<Edge> iter;
         private Vertex node;
         private int fromNode;
         //
-        int id;
+        int nodeId;
         double dist;
         int flags = 3;
 
@@ -167,12 +171,12 @@ public class TinkerGraphImpl implements Graph {
             Edge e = iter.next();
             Vertex other = getOtherNode(e, node);
             dist = (Double) e.getProperty(DISTANCE);
-            id = Integer.parseInt((String) other.getId());
+            nodeId = Integer.parseInt((String) other.getId());
             return true;
         }
 
         public int node() {
-            return id;
+            return nodeId;
         }
 
         public double distance() {
@@ -189,6 +193,10 @@ public class TinkerGraphImpl implements Graph {
 
         public int edge() {
             throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public boolean isEmpty() {
+            return false;
         }
     }
 

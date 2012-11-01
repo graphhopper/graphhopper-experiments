@@ -115,6 +115,10 @@ public class Neo4JGraphImpl implements Graph {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public EdgeIterator getAllEdges() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     // TODO should be static and graph should then be a weak ref
     class BulkTA {
 
@@ -318,6 +322,10 @@ public class Neo4JGraphImpl implements Graph {
 
         public int edge() {
             throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        public boolean isEmpty() {
+            return false;
         }
     }
 
