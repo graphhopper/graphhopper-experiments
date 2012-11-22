@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author Peter Karich, info@jetsli.de
+ * @author Peter Karich
  */
 public class LuceneStorage extends DefaultStorage {
 

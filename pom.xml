@@ -5,7 +5,8 @@
 
     <groupId>com.graphhopper</groupId>
     <artifactId>graphhopper-experiments</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <!-- Using a very old version from before Nov 2012 -->
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>GraphHopper Experiments</name>
@@ -19,7 +20,7 @@
         <dependency>
             <groupId>com.graphhopper</groupId>
             <artifactId>graphhopper</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.tinkerpop.blueprints</groupId>
